@@ -18,6 +18,7 @@ Identificar fabricantes más productivos: Analizar qué fabricantes tienen más 
 **•	CONJUNTO DE DATOS:** Esta base de datos, se compone de dos tablas que son: Producto y fabricante. A pesar de contar solo con dos tablas, podemos hacer una analisis fuerte y robusto, para asi poder tener un mejor desarrollo para la tienda.
 
 **•	DESARROLLO-EJECUCION:**
+
 ![Der](https://github.com/pocolus/Portfolio-SQL03/blob/main/Der.png)
 
 **1. CREAMOS LA BASE DE DATOS**
