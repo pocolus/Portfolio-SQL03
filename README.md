@@ -310,7 +310,81 @@ order by precio desc, nombre asc;
 
 **1.1.4 Consultas multitabla (Composición interna)**
 1. Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de la base de datos.
+```sql
+select producto.nombre as Producto, precio, fabricante.nombre as Fabricante
+from producto
+inner join fabricante
+on producto.id_fabricante = fabricante.id;
+```
+2. Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de la base de datos. 
+Ordene el resultado por el nombre del fabricante, por orden alfabético.
+```sql
+select producto.nombre as Producto, precio, fabricante.nombre as Fabricante
+from producto
+inner join fabricante
+on producto.id_fabricante = fabricante.id
+order by 3;
+```
+3. Devuelve una lista con el identificador del producto, nombre del producto, identificador del fabricante y nombre del fabricante, 
+de todos los productos de la base de datos.
+```sql
+select producto.id, producto.nombre as Producto, id_fabricante, fabricante.nombre as Fabricante
+from producto
+inner join fabricante
+on producto.id_fabricante = fabricante.id;
+```
+4. Devuelve el nombre del producto, su precio y el nombre de su fabricante, del producto más barato.
+```sql
+select top 1 producto.nombre as Producto, precio, fabricante.nombre as Fabricante
+from producto
+inner join fabricante
+on producto.id_fabricante = fabricante.id
+order by precio;
 
+select producto.nombre as Producto, precio, fabricante.nombre as Fabricante
+from producto
+inner join fabricante
+on producto.id_fabricante = fabricante.id
+where precio in (select MIN(precio) from producto);
+```
+5. Devuelve el nombre del producto, su precio y el nombre de su fabricante, del producto más caro.
+```sql
+select top 1 producto.nombre as Producto, precio, fabricante.nombre as Fabricante
+from producto
+inner join fabricante
+on producto.id_fabricante = fabricante.id
+order by precio desc;
+
+select producto.nombre as Producto, precio, fabricante.nombre as Fabricante
+from producto
+inner join fabricante
+on producto.id_fabricante = fabricante.id
+where precio in (select max(precio) from producto);
+```
+6. Devuelve una lista de todos los productos del fabricante Lenovo.
+```sql
+select producto.nombre as Producto, fabricante.nombre as Fabricante
+from producto
+inner join fabricante
+on producto.id_fabricante = fabricante.id
+where fabricante.nombre = 'lenovo';
+```
+7. Devuelve una lista de todos los productos del fabricante Crucial que tengan un precio mayor que 200€.
+```sql
+select * 
+from producto
+join fabricante
+on producto.id_fabricante = fabricante.id
+where fabricante.nombre = 'crucial' and precio > 200;
+```
+8. Devuelve un listado con todos los productos de los fabricantes Asus, Hewlett-Packardy Seagate. Sin utilizar el operador IN.
+```sql
+select producto.nombre as Producto, fabricante.nombre as Fabricante
+from producto
+join fabricante
+on producto.id_fabricante = fabricante.id
+where fabricante.nombre = 'asus' or fabricante.nombre = 'Hewlett-Packard' or fabricante.nombre = 'seagate';
+```
 
 
 
